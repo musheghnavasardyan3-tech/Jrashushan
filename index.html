@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ջրաշուշանների լիճ · COP17</title>
+    <!-- Google Fonts: Noto Serif Armenian & Noto Sans Armenian -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;500;700&family=Noto+Serif+Armenian:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for the specified layered cut-paper palette */
+        :root {
+            --sky-blue: #BFE3EE;
+            --hill-green-1: #A9D6A5;
+            --hill-green-2: #73B76F;
+            --hill-green-3: #469A5C;
+            --lily-pad-dark: #2E9A5B;
+            --lily-pad-light: #3BAE66;
+            --water-1: #7CC6DA;
+            --water-2: #55AED0;
+            --water-3: #3592BC;
+            --water-4: #237AA6;
+            --lily-white: #FFFFFF;
+            --lily-pink-1: #FCE4EB;
+            --lily-pink-2: #F7BFD0;
+            --sun-yellow: #F6C945;
+            --text-dark: #1E4D3A;
+            --deep-green: #2A7F63;
+            --card-bg: #FFFFFF;
+            --shadow: rgba(30, 77, 58, 0.12);
+        }
+
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans Armenian', sans-serif;
+            background-color: var(--sky-blue);
+            color: var(--text-dark);
+            font-size: 17px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Noto Serif Armenian', serif;
+        }
+
+        /* Main Wrapper Container for Mobile-First Readability */
+        .page-container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 20px 16px 60px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* Reusable Card Component with Cut-Paper Look */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 28px 22px;
+            box-shadow: 0 10px 25px var(--shadow);
+            border: 2px dashed #ffffff;
+            outline: 2px solid rgba(70, 154, 92, 0.2);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 30px var(--shadow);
+        }
+
+        /* Typography Styles */
+        .small-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--deep-green);
+            background-color: var(--hill-green-1);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.25;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--deep-green);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--hill-green-1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: #2b5c47;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* SVG Container Styles */
+        .svg-wrapper {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 16px 0;
+            background: linear-gradient(to bottom, var(--sky-blue), #d9eff5);
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .svg-wrapper svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Sub-cards for Section 4 */
+        .cards-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .sub-card {
+            background-color: #f4faf6;
+            border-radius: 14px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px dashed var(--hill-green-2);
+        }
+
+        .sub-card-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background-color: var(--hill-green-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sub-card-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Muted Caption */
+        .muted-caption {
+            font-size: 0.85rem;
+            color: #618a77;
+            font-style: italic;
+            margin-top: 12px;
+            border-left: 3px solid var(--hill-green-2);
+            padding-left: 10px;
+        }
+
+        /* Closing & Footer */
+        .closing-card {
+            background: linear-gradient(135deg, #eaf6f0, #d4eddf);
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 10px 0;
+            opacity: 0.85;
+        }
+
+        /* Wave Dividers between sections */
+        .wave-divider {
+            width: 100%;
+            height: 24px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.6;
+        }
+
+        /* Beetle Walk Animation Container */
+        .beetle-track {
+            position: relative;
+            height: 30px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .walking-beetle {
+            position: absolute;
+            left: 0;
+            animation: walkBeetle 8s linear infinite alternate;
+        }
+
+        @keyframes walkBeetle {
+            0% { transform: translateX(0px) rotate(0deg); }
+            49% { transform: translateX(260px) rotate(0deg); }
+            50% { transform: translateX(260px) scaleX(-1) rotate(0deg); }
+            99% { transform: translateX(0px) scaleX(-1) rotate(0deg); }
+            100% { transform: translateX(0px) rotate(0deg); }
+        }
+
+        /* Scroll Animation States via IntersectionObserver */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Respect prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-animate {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .walking-beetle {
+                animation: none !important;
+            }
+            svg * {
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="page-container">
+
+        <!-- [HERO] -->
+        <section class="card scroll-animate">
+            <span class="small-label">COP17 · բնապահպանական նախագիծ</span>
+            <h1 class="hero-title">Ջրաշուշանների լիճ</h1>
+            <p class="hero-subtitle">Լոռու գաղտնիքներից մեկը՝ մեր տարածաշրջանում</p>
+            
+            <!-- Hero SVG Illustration with animated waves, clouds, sun, hills, lake & lilies -->
+            <div class="svg-wrapper">
+                <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Sky Background -->
+                    <rect width="400" height="240" fill="#BFE3EE" />
+                    
+                    <!-- Sun -->
+                    <circle cx="330" cy="50" r="28" fill="#F6C945" opacity="0.9" />
+                    <circle cx="330" cy="50" r="36" fill="#F6C945" opacity="0.3" />
+
+                    <!-- Clouds with drift animation -->
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="-15,0; 15,0; -15,0" dur="12s" repeatCount="indefinite" />
+                        <path d="M 60 45 Q 75 30 95 45 Q 115 35 125 55 Q 140 60 130 75 Q 50 75 60 45 Z" fill="#FFFFFF" opacity="0.8" />
+                        <path d="M 240 30 Q 255 18 275 30 Q 295 22 305 40 Q 320 45 310 58 Q 230 58 240 30 Z" fill="#FFFFFF" opacity="0.7" />
+                    </g>
+
+                    <!-- Hill Layer 3 (Background) -->
+                    <path d="M 0 140 Q 150 90 400 130 L 400 240 L 0 240 Z" fill="#469A5C" />
+
+                    <!-- Hill Layer 2 (Middle) -->
+                    <path d="M 0 160 Q 220 110 400 150 L 400 240 L 0 240 Z" fill="#73B76F" />
+
+                    <!-- Hill Layer 1 (Foreground) -->
+                    <path d="M 0 180 Q 180 130 400 170 L 400 240 L 0 240 Z" fill="#A9D6A5" />
+
+                    <!-- Blue Lake -->
+                    <path d="M 60 190 Q 200 160 340 190 Q 380 210 340 230 Q 200 250 60 230 Q 20 210 60 190 Z" fill="#3592BC" />
+                    
+                    <!-- Wave Layers inside Lake with drift animation -->
+                    <g>
+                        <animateTransform attributeName="transform" type="translate" values="-6,0; 6,0; -6,0" dur="4s" repeatCount="indefinite" />
+                        <path d="M 90 200 Q 120 195 150 200 Q 180 205 210 200 Q 240 195 270 200 Q 300 205 320 200" stroke="#7CC6DA" stroke-width="2.5" fill="none" opacity="0.7" />
+                        <path d="M 110 215 Q 140 210 170 215 Q 200 220 230 215 Q 260 210 290 215" stroke="#55AED0" stroke-width="2" fill="none" opacity="0.8" />
+                    </g>
+
+                    <!-- Lily Pads & Water Lilies -->
+                    <!-- Lily 1 -->
+                    <g transform="translate(120, 200)">
+                        <!-- Pad -->
+                        <ellipse cx="0" cy="0" rx="18" ry="10" fill="#2E9A5B" />
+                        <!-- Bobbing animation group -->
+                        <animateTransform attributeName="transform" type="translate" values="120,200; 120,197; 120,200" dur="3s" repeatCount="indefinite" />
+                        <!-- Flower -->
+                        <circle cx="0" cy="-3" r="8" fill="#FFFFFF" />
+                        <circle cx="0" cy="-3" r="5" fill="#FCE4EB" />
+                        <circle cx="0" cy="-3" r="2" fill="#F6C945" />
+                    </g>
+
+                    <!-- Lily 2 -->
+                    <g transform="translate(240, 212)">
+                        <ellipse cx="0" cy="0" rx="15" ry="8" fill="#3BAE66" />
+                        <animateTransform attributeName="transform" type="translate" values="240,212; 240,215; 240,212" dur="3.5s" repeatCount="indefinite" />
+                        <circle cx="-2" cy="-2" r="7" fill="#FFFFFF" />
+                        <circle cx="-2" cy="-2" r="4" fill="#F7BFD0" />
+                        <circle cx="-2" cy="-2" r="1.5" fill="#F6C945" />
+                    </g>
+
+                    <!-- Lily 3 -->
+                    <g transform="translate(180, 222)">
+                        <ellipse cx="0" cy="0" rx="13" ry="7" fill="#2E9A5B" />
+                        <animateTransform attributeName="transform" type="translate" values="180,222; 180,219; 180,222" dur="2.8s" repeatCount="indefinite" />
+                        <circle cx="1" cy="-2" r="6" fill="#FFFFFF" />
+                        <circle cx="1" cy="-2" r="3" fill="#FCE4EB" />
+                        <circle cx="1" cy="-2" r="1" fill="#F6C945" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 100 20" preserveAspectRatio="none" width="100%" height="20">
+                <path d="M0 10 Q 25 20, 50 10 T 100 10 L 100 20 L 0 20 Z" fill="#73B76F" opacity="0.3"/>
+            </svg>
+        </div>
+
+        <!-- [INTRO] -->
+        <section class="card scroll-animate">
+            <p>Բարի գալուստ։ Եթե հենց նոր սկանավորեցիր մեր էջանշանի QR կոդը, ուրեմն հասել ես ճիշտ տեղ։ Մենք Ստեփանավանի թիվ 2 հիմնական դպրոցի աշակերտներն ենք, և COP17 բնապահպանական ծրագրի շրջանակում ուզում ենք պատմել մեր տարածաշրջանի երկու փոքրիկ գանձի մասին՝ ջրաշուշանների լճի և մի աննշան թվացող, բայց շատ հազվագյուտ միջատի մասին։</p>
+        </section>
+
+        <!-- [SECTION 1 — heading: Մեր դպրոցը] -->
+        <section class="card scroll-animate">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                Մեր դպրոցը
+            </h2>
+            <p>Մենք սովորում ենք Ստեփանավանի թիվ 2 հիմնական դպրոցում՝ Լոռու մարզում։ Այս էջանշանը և այս կայքը մեր նախագիծն են։ Ուզում ենք, որ մեր կողմերի բնությունը ճանաչեն ոչ միայն մեզ մոտ, այլև ամբողջ երկրում։</p>
+            
+            <!-- Decorative SVG School Building -->
+            <div class="svg-wrapper">
+                <svg viewBox="0 0 350, 180" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Ground -->
+                    <rect x="0" y="160" width="350" height="20" fill="#73B76F" />
+                    <!-- Building Base -->
+                    <rect x="60" y="70" width="230" height="90" rx="4" fill="#F4A261" />
+                    <!-- Roof -->
+                    <polygon points="50,70 175,25 300,70" fill="#E76F51" />
+                    <!-- Tricolor Flag on Top -->
+                    <line x1="175" y1="25" x2="175" y2="5" stroke="#1E4D3A" stroke-width="2" />
+                    <rect x="175" y="6" width="16" height="4" fill="#D90429" />
+                    <rect x="175" y="10" width="16" height="4" fill="#0077B6" />
+                    <rect x="175" y="14" width="16" height="4" fill="#FFB703" />
+                    <!-- Door -->
+                    <rect x="150" y="115" width="50" height="45" rx="4" fill="#2A7F63" />
+                    <!-- Windows -->
+                    <rect x="80" y="85" width="35" height="35" rx="3" fill="#BFE3EE" />
+                    <line x1="97" y1="85" x2="97" y2="120" stroke="#1E4D3A" stroke-width="1.5" />
+                    <line x1="80" y1="102" x2="115" y2="102" stroke="#1E4D3A" stroke-width="1.5" />
+
+                    <rect x="235" y="85" width="35" height="35" rx="3" fill="#BFE3EE" />
+                    <line x1="252" y1="85" x2="252" y2="120" stroke="#1E4D3A" stroke-width="1.5" />
+                    <line x1="235" y1="102" x2="270" y2="102" stroke="#1E4D3A" stroke-width="1.5" />
+                </svg>
+            </div>
+        </section>
+
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 100 20" preserveAspectRatio="none" width="100%" height="20">
+                <path d="M0 10 Q 25 0, 50 10 T 100 10 L 100 20 L 0 20 Z" fill="#3592BC" opacity="0.3"/>
+            </svg>
+        </div>
+
+        <!-- [SECTION 2 — heading: Ջրաշուշանները] -->
+        <section class="card scroll-animate">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                Ջրաշուշանները
+            </h2>
+            <p>Ջրաշուշանը ջրային բույս է. նրա կլոր, փայլուն տերևները լողում են ջրի երեսին, իսկ արմատները ամրացած են լճի հատակի տիղմում։</p>
+            <p>Երբ ջրաշուշանները ծաղկում են, լճի մակերեսը վերածվում է կանաչ-սպիտակ գորգի։ Ծաղիկները սովորաբար բացվում են օրվա ընթացքում՝ արևի լույսի տակ, իսկ երեկոյան կամ ամպամած եղանակին նորից փակվում են։</p>
+            <p>Տերևները ստվեր են տալիս ջրին, և դրանց տակ ապաստան են գտնում փոքր ձկները, գորտերն ու ջրի այլ փոքրիկ կենդանիներ։</p>
+            <p>Ջրաշուշանները շատ զգայուն են ջրի մաքրության նկատմամբ։ Երբ լիճը աղտոտվում կամ ցամաքում է, առաջինը տուժում են հենց նրանք։ Մեր լճի ջրաշուշանները գրանցված են Հայաստանի Կարմիր գրքում, իսկ դա նշանակում է, որ տեսակը վտանգված է և հատուկ պահպանության կարիք ունի։</p>
+        </section>
+
+        <!-- [SECTION 3 — heading: Ստեփանավանյան առվակային գնայուկ] -->
+        <section class="card scroll-animate">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+                Ստեփանավանյան առվակային գնայուկ
+            </h2>
+            <p>Սա Հայաստանի ամենափոքր և ամենաանհայտ բնակիչներից մեկն է։ Բզեզի երկարությունը ընդամենը 3-3,5 միլիմետր է՝ բրնձահատիկից էլ փոքր։</p>
+            <p>Նրա մարմինը բարակ է և տափակ, գույնը՝ գունատ շագանակագույն, ծածկված մանր մազիկներով։ Ամենազարմանալին այն է, որ նա աչքեր չունի։</p>
+            <p>Աշխարհում այս բզեզը հայտնի է միայն Ստեփանավանի մոտակայքից՝ Լոռու մարզից։ Նա ապրում է անտառի մի աղբյուրի մոտ՝ խոնավ, փափուկ հողի մեջ՝ թաղված մի քանի սանտիմետր խորությամբ։</p>
+            <p>Գնայուկը գրանցված է Հայաստանի Կարմիր գրքում, իսկ Բնության պահպանության միջազգային միության (IUCN) չափանիշներով գնահատվում է որպես կրիտիկական վիճակում գտնվող տեսակ, այսինքն՝ նրա վերացման վտանգը շատ մեծ է։</p>
+            <p>Հիմնական վտանգը ապրելավայրի ջրային ռեժիմի փոփոխությունն է։ Եթե աղբյուրը ցամաքի կամ նրա ջրի քանակը փոխվի, բզեզը այլ տեղ չունի գնալու։ Առայժմ նրա պահպանման համար հատուկ միջոցներ չեն իրականացվում։</p>
+            
+            <!-- Decorative Beetle Track with Walking Beetle -->
+            <div class="beetle-track">
+                <svg class="walking-beetle" width="32" height="18" viewBox="0 0 32 18" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Pale-brown flat beetle, no eyes -->
+                    <ellipse cx="16" cy="9" rx="10" ry="6" fill="#A87950" />
+                    <!-- Head -->
+                    <ellipse cx="25" cy="9" rx="4" ry="3.5" fill="#905C35" />
+                    <!-- Antennae -->
+                    <line x1="28" y1="8" x2="31" y2="4" stroke="#724622" stroke-width="1.2" stroke-linecap="round" />
+                    <line x1="28" y1="10" x2="31" y2="14" stroke="#724622" stroke-width="1.2" stroke-linecap="round" />
+                    <!-- Legs -->
+                    <line x1="11" y1="4" x2="9" y2="1" stroke="#724622" stroke-width="1.2" />
+                    <line x1="11" y1="14" x2="9" y2="17" stroke="#724622" stroke-width="1.2" />
+                    <line x1="16" y1="3" x2="16" y2="1" stroke="#724622" stroke-width="1.2" />
+                    <line x1="16" y1="15" x2="16" y2="17" stroke="#724622" stroke-width="1.2" />
+                    <line x1="21" y1="4" x2="23" y2="1" stroke="#724622" stroke-width="1.2" />
+                    <line x1="21" y1="14" x2="23" y2="17" stroke="#724622" stroke-width="1.2" />
+                </svg>
+            </div>
+
+            <div class="muted-caption">Տվյալները՝ Վիքիպեդիա (Ստեփանավանյան առվակային գնայուկ)։</div>
+        </section>
+
+        <!-- [SECTION 4 — heading: Ինչպես կարող ենք օգնել] -->
+        <section class="card scroll-animate">
+            <h2 class="section-title">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                Ինչպես կարող ենք օգնել
+            </h2>
+            
+            <div class="cards-grid">
+                <div class="sub-card">
+                    <div class="sub-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4D3A" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                    </div>
+                    <div class="sub-card-text">Լիճ այցելելիս աղբը տար քեզ հետ։</div>
+                </div>
+
+                <div class="sub-card">
+                    <div class="sub-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4D3A" stroke-width="2.2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                    </div>
+                    <div class="sub-card-text">Ջրաշուշաններին մի պոկիր. թող մնան ջրի վրա։</div>
+                </div>
+
+                <div class="sub-card">
+                    <div class="sub-card-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E4D3A" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="sub-card-text">Պատմիր այս մասին ընկերներիդ և ընտանիքիդ։</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- [CLOSING] -->
+        <section class="card closing-card scroll-animate">
+            <p>Շնորհակալություն, որ կարդացիր։ Հաջորդ անգամ, երբ լճի մոտ լինես, հիշիր՝ փոքր ջանքը կարող է փրկել մի ամբողջ աշխարհ, նույնիսկ եթե այդ աշխարհը ընդամենը երեք միլիմետր է։</p>
+        </section>
+
+        <!-- [FOOTER] -->
+        <footer class="footer scroll-animate">
+            Ստեփանավանի թիվ 2 հիմնական դպրոց · COP17
+        </footer>
+
+    </main>
+
+    <!-- JavaScript for IntersectionObserver Smooth Fade-In Animation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observerInstance.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
